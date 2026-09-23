@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f6f1e8">
+  <title>An Tâm | Kiểm tra trước khi hành động</title>
+  
+  <style>
+:root{--bg:#f6f1e8;--paper:#fffdf8;--ink:#24302b;--muted:#6b746f;--line:#ded6c8;--green:#2e6653;--green2:#214d3e;--soft:#e8f1ec;--warn:#fff0d8;--danger:#fde7e7;--ok:#e7f3ec}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}button,input,textarea,select{font:inherit}.topbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px max(18px,4vw);background:rgba(246,241,232,.94);backdrop-filter:blur(12px);border-bottom:1px solid #0001}.brandwrap{display:flex;align-items:center;gap:10px}.mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--green);color:white;font-size:24px;font-weight:900}.brand{display:block;font-size:20px}.brandwrap small{display:block;color:var(--muted)}.shell{width:min(940px,calc(100% - 28px));margin:28px auto 60px;display:grid;gap:20px}.card{background:var(--paper);border:1px solid #0001;border-radius:24px;padding:clamp(20px,4vw,36px);box-shadow:0 18px 50px #5b49351a}.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.07;margin:.35rem 0 1rem;letter-spacing:-.04em}.hero p{font-size:clamp(17px,2.2vw,21px);color:#44504b}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.13em;color:var(--green)}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:24px}.steps>div{border:1px solid var(--line);border-radius:18px;padding:16px;background:#fff}.steps span{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--soft);color:var(--green);font-weight:900;margin-bottom:12px}.steps b,.steps small{display:block}.steps small{color:var(--muted);margin-top:5px}.sectionhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}h2{font-size:clamp(24px,3vw,32px);margin:.15rem 0 1rem}h3{margin-top:0}.mic{width:min(100%,460px);margin:12px auto 5px;min-height:116px;display:flex;justify-content:center;align-items:center;gap:14px;border:0;border-radius:28px;background:var(--green);color:white;font-size:23px}.mic.listening{background:#9b2f2f;animation:pulse 1.2s infinite}@keyframes pulse{50%{transform:scale(1.02)}}.hint{color:var(--muted);font-size:14px}.center{text-align:center}label{display:block;font-weight:750;margin:16px 0 7px}textarea,input,select{width:100%;border:1px solid var(--line);border-radius:15px;padding:13px 14px;background:white;color:var(--ink)}textarea:focus,input:focus,select:focus{outline:3px solid #2e66531a;border-color:var(--green)}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 18px}.chip,.ghost,.linkbtn{border:1px solid var(--line);border-radius:999px;background:#fffdf8;color:var(--ink);padding:9px 13px;font-weight:750}.linkbtn{border:0;color:var(--green);background:transparent}.primary{width:100%;border:0;border-radius:16px;background:var(--green);color:white;padding:15px 18px;font-weight:900}.primary:hover,.mic:hover{background:var(--green2)}.hidden{display:none!important}.risk{display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:18px;padding:18px 20px;background:var(--warn);border:1px solid #e8d0a9}.risk.high{background:var(--danger);border-color:#ebb9b9}.risk.low{background:var(--ok);border-color:#b9ddc8}.risk small{display:block;font-size:11px;color:var(--muted);font-weight:900;letter-spacing:.12em}.risk strong{display:block;font-size:27px}.risk>b{font-size:28px}.resultgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.resultgrid>div{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.mainaction{font-size:18px;font-weight:750;border-left:4px solid var(--green);padding-left:14px}.actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:18px}.action{display:flex;align-items:center;justify-content:center;text-align:center;min-height:64px;border:1px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);text-decoration:none;font-weight:850;padding:12px}.action:hover{background:var(--soft);border-color:var(--green)}.note{margin-top:18px;background:#f2eee6;border-radius:15px;padding:15px 17px}.feedback{display:grid;grid-template-columns:1fr 1fr;gap:12px}.pilotactions{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:14px}.privacy{background:#f1f5f2}dialog{width:min(600px,calc(100% - 24px));border:0;border-radius:22px;padding:0;box-shadow:0 30px 80px #0004}dialog::backdrop{background:#1b231f73;backdrop-filter:blur(3px)}.dialog{padding:28px}.toggle{display:flex;gap:10px;align-items:center;margin:18px 0}.toggle input{width:auto}footer{width:min(940px,calc(100% - 28px));margin:0 auto 36px;color:var(--muted);font-size:13px}.community-entry{background:linear-gradient(135deg,#fffdf8,#edf5f0)}.community-buttons{display:grid;grid-template-columns:1fr 1fr;gap:10px}.secondarybtn{width:100%;border:1px solid var(--green);border-radius:16px;background:white;color:var(--green2);padding:15px 18px;font-weight:900}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px}.tabbtn{border:1px solid var(--line);border-radius:999px;background:white;padding:10px 14px;font-weight:850;color:var(--ink)}.tabbtn.active{background:var(--green);color:white;border-color:var(--green)}.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.case-card{border:1px solid var(--line);border-radius:18px;padding:18px;background:white}.case-card h3{margin:10px 0 8px}.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:900;letter-spacing:.03em}.badge.official{background:var(--ok);color:#1f6545}.badge.community{background:var(--warn);color:#7b5312}.badge.trending{background:#fff0e8;color:#9b431c}.badge.review{background:#edf0ff;color:#4052a1}.case-meta{font-size:13px;color:var(--muted);margin:8px 0 12px}.case-actions{display:grid;gap:8px;margin-top:12px}.case-actions button{width:100%;border:1px solid var(--line);border-radius:13px;background:#fff;padding:11px 12px;font-weight:800;color:var(--ink)}.case-actions button.primary-mini{background:var(--soft);border-color:#c9ded2;color:var(--green2)}.community-warning{background:var(--warn);border:1px solid #ead1a8;border-radius:15px;padding:13px 15px;font-size:14px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.draft{margin-top:16px;border:1px solid #c9ded2;background:#f6fbf8;border-radius:18px;padding:18px}.checkbox-line{display:flex;align-items:flex-start;gap:10px;font-weight:650}.checkbox-line input{width:auto;margin-top:5px}.statusline{padding:12px 14px;border-radius:14px;background:var(--soft);font-weight:750;margin-top:12px}.tinybtn{border:0;background:transparent;color:var(--green);font-weight:800;padding:6px 0;text-decoration:underline}.library-note{font-size:13px;color:var(--muted);margin-top:10px}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}.resultgrid,.feedback,.actions,.pilotactions,.community-buttons,.case-grid,.formgrid{grid-template-columns:1fr}.brandwrap small{display:none}}
+@media(max-width:470px){.steps{grid-template-columns:1fr}.card{padding:20px;border-radius:20px}.hero h1{font-size:34px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brandwrap"><div class="mark">安</div><div><b class="brand">An Tâm</b><small>Kiểm tra trước khi hành động</small></div></div>
+  <button id="openSettings" class="ghost">Cài đặt</button>
+</header>
+
+<main class="shell">
+  <section class="card hero">
+    <div class="eyebrow">BẢN THỬ NGHIỆM DÀNH CHO NGƯỜI DÙNG</div>
+    <h1>Khi có điều gì đáng ngờ, bác cứ nói với An Tâm.</h1>
+    <p>An Tâm không cố “đoán chắc” ai là lừa đảo. Mục tiêu là giúp bác <b>dừng lại, kiểm tra, xác minh và hỏi người tin cậy</b> trước khi chuyển tiền, bấm link hoặc làm theo hướng dẫn đáng ngờ.</p>
+    <div class="steps">
+      <div><span>1</span><b>Dừng lại</b><small>Chưa chuyển tiền, chưa bấm link.</small></div>
+      <div><span>2</span><b>Kiểm tra</b><small>Tìm dấu hiệu gây áp lực.</small></div>
+      <div><span>3</span><b>Xác minh</b><small>Dùng kênh chính thức.</small></div>
+      <div><span>4</span><b>Hỏi người thân</b><small>Chỉ khi bác đồng ý.</small></div>
+    </div>
+  </section>
+
+  <section class="card" id="inputCard">
+    <div class="sectionhead"><div><div class="eyebrow">BƯỚC 1</div><h2>Chuyện gì vừa xảy ra?</h2></div><button id="fillDemo" class="linkbtn">Dùng tình huống mẫu</button></div>
+    <button id="micButton" class="mic"><span>🎙️</span><b id="micText">Bấm để nói</b></button>
+    <p id="speechStatus" class="hint center">Nếu trình duyệt không hỗ trợ giọng nói, bác có thể nhập nội dung bên dưới.</p>
+    <label for="story">Hoặc nhập tình huống</label>
+    <textarea id="story" rows="6" placeholder="Ví dụ: Có người tự xưng là công an, nói tôi phải chuyển tiền ngay và không được kể cho con..."></textarea>
+    <div class="chips">
+      <button class="chip" data-demo="police">Công an yêu cầu chuyển tiền</button>
+      <button class="chip" data-demo="bank">Ngân hàng / OTP / tài khoản</button>
+      <button class="chip" data-demo="family">Người thân gặp nạn</button>
+    </div>
+    <button id="analyzeButton" class="primary">Kiểm tra tình huống</button>
+  </section>
+
+  <section class="card community-entry" id="libraryEntry">
+    <div class="eyebrow">THƯ VIỆN CỘNG ĐỒNG</div>
+    <h2>Cùng nhau nhận biết tình huống mới</h2>
+    <p>An Tâm có hai khu vực riêng biệt: <b>Tình huống chính thức</b> đã được nhóm xác minh và <b>Tình huống cộng đồng</b> do người dùng chia sẻ để phát hiện sớm các kiểu lừa đảo mới.</p>
+    <div class="community-buttons">
+      <button id="openLibrary" class="primary">📚 Xem thư viện tình huống</button>
+      <button id="openSubmit" class="secondarybtn">＋ Chia sẻ tình huống mới</button>
+    </div>
+    <p class="library-note">Tình huống cộng đồng không tự động trở thành hướng dẫn chính thức. Nhiều lượt xác nhận chỉ giúp An Tâm ưu tiên kiểm tra.</p>
+  </section>
+
+  <section class="card hidden" id="libraryCard">
+    <div class="sectionhead"><div><div class="eyebrow">THƯ VIỆN TÌNH HUỐNG</div><h2>Chính thức & cộng đồng</h2></div><button id="closeLibrary" class="ghost">Đóng</button></div>
+    <div class="tabs">
+      <button class="tabbtn active" data-tab="officialCases">✓ Chính thức</button>
+      <button class="tabbtn" data-tab="communityCases">👥 Cộng đồng</button>
+    </div>
+    <div id="officialCases" class="case-grid"></div>
+    <div id="communityCases" class="case-grid hidden"></div>
+    <div class="community-warning"><b>Phân biệt rõ:</b> Nội dung ở tab Cộng đồng có thể hữu ích để nhận biết xu hướng mới nhưng chưa phải hướng dẫn chính thức từ An Tâm cho đến khi được rà soát và gắn trạng thái xác minh.</div>
+  </section>
+
+  <section class="card hidden" id="submitCard">
+    <div class="sectionhead"><div><div class="eyebrow">CHIA SẺ TÌNH HUỐNG MỚI</div><h2>Bác vừa gặp chuyện gì?</h2></div><button id="closeSubmit" class="ghost">Đóng</button></div>
+    <p class="hint">Bác có thể kể lại tình huống. An Tâm sẽ giúp biến mô tả thành một mẫu dễ hiểu; bác không cần tự viết theo cấu trúc.</p>
+    <button id="submitMic" class="mic" type="button"><span>🎙️</span><b id="submitMicText">Bấm để kể lại</b></button>
+    <label for="newCaseStory">Hoặc mô tả bằng chữ</label>
+    <textarea id="newCaseStory" rows="4" placeholder="Ví dụ: Có người gọi tự xưng là điện lực và gửi mã QR, nói phải đóng tiền ngay nếu không sẽ bị cắt điện..."></textarea>
+    <div class="formgrid">
+      <label>1. Ai đã liên hệ với bác?
+        <input id="newCaseContact" placeholder="Ví dụ: điện lực, ngân hàng, người lạ...">
+      </label>
+      <label>2. Họ yêu cầu bác làm gì?
+        <input id="newCaseRequest" placeholder="Ví dụ: chuyển tiền, quét QR, đọc OTP...">
+      </label>
+    </div>
+    <label>3. Điều gì khiến bác thấy đáng ngờ?
+      <textarea id="newCaseSuspicion" rows="3" placeholder="Ví dụ: họ thúc giục, đe dọa, yêu cầu giữ bí mật..."></textarea>
+    </label>
+    <button id="buildDraft" class="primary" type="button">Tạo bản nháp tình huống</button>
+
+    <div id="caseDraft" class="draft hidden">
+      <div class="eyebrow">BẢN NHÁP DO AN TÂM TẠO</div>
+      <h3 id="draftTitle">Tình huống mới</h3>
+      <p><b>Tóm tắt:</b> <span id="draftSummary"></span></p>
+      <p><b>Dấu hiệu:</b></p><ul id="draftSignals"></ul>
+      <p><b>Nhóm đề xuất:</b> <span id="draftCategory"></span></p>
+      <div class="community-warning"><b>Quyền riêng tư:</b> Không gửi OTP, mật khẩu, số tài khoản, CCCD, địa chỉ, số điện thoại cá nhân hoặc tên đầy đủ của nạn nhân. Trong sản phẩm thật, An Tâm sẽ kiểm tra và ẩn dữ liệu cá nhân trước khi công khai.</div>
+      <label class="checkbox-line"><input id="shareConsent" type="checkbox"> <span>Tôi đồng ý chia sẻ tình huống này vào Thư viện Cộng đồng sau khi đã loại bỏ thông tin cá nhân.</span></label>
+      <button id="submitCommunityCase" class="primary" type="button">Gửi vào Thư viện Cộng đồng</button>
+      <p id="communitySubmitStatus" class="hint"></p>
+    </div>
+  </section>
+
+  <section class="card hidden" id="resultCard" aria-live="polite">
+    <div class="sectionhead"><div><div class="eyebrow">BƯỚC 2</div><h2>Kết quả kiểm tra</h2></div><button id="readResult" class="ghost">🔊 Đọc kết quả</button></div>
+    <div class="risk" id="riskBanner"><div><small>MỨC ĐỘ</small><strong id="riskLevel">Cần kiểm tra</strong></div><b id="riskScore">0/5</b></div>
+    <div class="resultgrid">
+      <div><h3>An Tâm nhận thấy</h3><ul id="signalsList"></ul></div>
+      <div><h3>Việc an toàn nhất lúc này</h3><p id="mainAction" class="mainaction"></p></div>
+    </div>
+    <div class="actions">
+      <a id="trustedCall" class="action" href="#">📞 Gọi người thân tin cậy</a>
+      <button id="officialCheck" class="action">🏛️ Xác minh qua số chính thức</button>
+      <button id="restart" class="action">↻ Kiểm tra tình huống khác</button>
+    </div>
+    <div class="note"><b>Lưu ý:</b> An Tâm là công cụ hỗ trợ ra quyết định trong giai đoạn thử nghiệm. Không chuyển tiền, cung cấp OTP/mật khẩu, cài ứng dụng lạ hoặc cho người khác điều khiển thiết bị chỉ dựa trên một cuộc gọi hay tin nhắn.</div>
+  </section>
+
+  <section class="card hidden" id="pilotCard">
+    <div class="eyebrow">DÀNH CHO THỬ NGHIỆM</div>
+    <h2>Phản hồi nhanh</h2>
+    <p class="hint">Nội dung tình huống không được lưu vào dữ liệu pilot.</p>
+    <div class="feedback">
+      <label>Bác có hiểu cảnh báo không?
+        <select id="understood"><option value="">Chọn</option><option value="5">Hiểu rất rõ</option><option value="4">Khá rõ</option><option value="3">Tạm hiểu</option><option value="2">Hơi khó hiểu</option><option value="1">Không hiểu</option></select>
+      </label>
+      <label>Cách nhập nào dễ hơn?
+        <select id="inputPreference"><option value="">Chọn</option><option value="voice">Nói</option><option value="typing">Gõ chữ</option><option value="same">Như nhau</option></select>
+      </label>
+      <label>Sau cảnh báo, bác sẽ làm gì?
+        <select id="chosenAction"><option value="">Chọn</option><option value="pause">Dừng lại, chưa làm gì</option><option value="official">Gọi số chính thức</option><option value="family">Gọi người thân</option><option value="continue">Vẫn tiếp tục theo yêu cầu</option></select>
+      </label>
+      <label>Bác có muốn dùng An Tâm lần sau?
+        <select id="reuse"><option value="">Chọn</option><option value="yes">Có</option><option value="maybe">Có thể</option><option value="no">Không</option></select>
+      </label>
+    </div>
+    <label for="feedbackNote">Góp ý ngắn (không bắt buộc)</label>
+    <textarea id="feedbackNote" rows="3" placeholder="Ví dụ: Chữ to hơn, ít nút hơn, muốn nghe giọng chậm hơn..."></textarea>
+    <div class="pilotactions"><button id="saveFeedback" class="primary">Lưu phản hồi</button><button id="exportCsv" class="ghost">Xuất dữ liệu CSV</button></div>
+    <p id="saveStatus" class="hint"></p>
+  </section>
+
+  <section class="card privacy">
+    <h2>Quyền riêng tư trong bản thử nghiệm</h2>
+    <p>Phân tích rủi ro thông thường trong bản web này chạy trực tiếp trong trình duyệt bằng bộ quy tắc mẫu. Nội dung bác dùng để <b>kiểm tra tình huống</b> không tự động được thêm vào Thư viện Cộng đồng.</p>
+    <p>Phần <b>Chia sẻ tình huống mới</b> là hoàn toàn tự nguyện và có bước đồng ý riêng. Trong bản demo v0.3, tình huống cộng đồng chỉ được lưu trên thiết bị này để mô phỏng luồng sản phẩm; chưa có dữ liệu nào được gửi tới máy chủ của nhóm.</p>
+    <p>Nếu dùng nút nói, chức năng nhận diện giọng nói của trình duyệt có thể được xử lý bởi nhà cung cấp trình duyệt/thiết bị. Không nên đọc số tài khoản, OTP, mật khẩu hoặc thông tin định danh nhạy cảm.</p>
+  </section>
+</main>
+
+<dialog id="settingsDialog">
+<form method="dialog" class="dialog">
+  <div class="sectionhead"><div><div class="eyebrow">CÀI ĐẶT PILOT</div><h2>Người thân tin cậy</h2></div><button class="ghost" value="cancel">Đóng</button></div>
+  <label for="contactName">Tên người thân</label><input id="contactName" placeholder="Ví dụ: Con gái - Lan">
+  <label for="contactPhone">Số điện thoại</label><input id="contactPhone" type="tel" placeholder="0901234567">
+  <label class="toggle"><input id="slowSpeech" type="checkbox" checked> Đọc kết quả chậm hơn</label>
+  <button id="saveSettings" class="primary" type="button">Lưu cài đặt</button>
+</form>
+</dialog>
+
+<dialog id="officialDialog">
+<form method="dialog" class="dialog">
+  <div class="sectionhead"><div><div class="eyebrow">BƯỚC 3</div><h2>Xác minh qua kênh chính thức</h2></div><button class="ghost" value="cancel">Đóng</button></div>
+  <p>Không gọi lại số vừa liên hệ với bác. Hãy tự tìm số chính thức từ nguồn đáng tin cậy:</p>
+  <ul><li>Mặt sau thẻ ngân hàng hoặc ứng dụng ngân hàng chính thức.</li><li>Website chính thức của cơ quan/tổ chức.</li><li>Số điện thoại đã lưu từ trước.</li></ul>
+  <div class="note">Nếu người gọi yêu cầu giữ bí mật, chuyển tiền gấp, cung cấp OTP hoặc cài ứng dụng lạ, hãy dừng giao dịch cho đến khi xác minh độc lập.</div>
+</form>
+</dialog>
+
+<footer>An Tâm Pilot v0.3 · Thêm Thư viện Tình huống Cộng đồng · Thiết kế cho thử nghiệm người dùng tại Việt Nam</footer>
+<script>
+const $=id=>document.getElementById(id);
+const story=$("story"), micButton=$("micButton"), micText=$("micText"), speechStatus=$("speechStatus");
+const resultCard=$("resultCard"), pilotCard=$("pilotCard"), riskBanner=$("riskBanner"), riskLevel=$("riskLevel"), riskScore=$("riskScore"), signalsList=$("signalsList"), mainAction=$("mainAction");
+const settingsDialog=$("settingsDialog"), officialDialog=$("officialDialog"), trustedCall=$("trustedCall");
+const libraryCard=$("libraryCard"), submitCard=$("submitCard"), officialCases=$("officialCases"), communityCases=$("communityCases");
+const newCaseStory=$("newCaseStory"), newCaseContact=$("newCaseContact"), newCaseRequest=$("newCaseRequest"), newCaseSuspicion=$("newCaseSuspicion");
+
+const demos={
+police:"Có người gọi cho tôi tự xưng là công an. Họ nói tôi liên quan đến một vụ án, phải chuyển tiền ngay để kiểm tra và không được nói với con cái.",
+bank:"Có người tự xưng là nhân viên ngân hàng nói tài khoản của tôi sắp bị khóa. Họ yêu cầu tôi đọc mã OTP và bấm vào một đường link để xác minh.",
+family:"Có người gọi nói con tôi đang gặp tai nạn và cần chuyển tiền viện phí ngay. Họ nói phải giữ bí mật vì tình hình rất khẩn cấp."
+};
+
+const rules=[
+{id:"urgency",label:"Có dấu hiệu thúc ép hoặc yêu cầu hành động gấp",words:["ngay","khẩn cấp","gấp","lập tức","trong 5 phút","trong 10 phút","sắp bị khóa"]},
+{id:"secrecy",label:"Có yêu cầu giữ bí mật hoặc không nói với người thân",words:["không được nói","đừng nói","giữ bí mật","không kể","không báo cho"]},
+{id:"authority",label:"Người liên hệ tự xưng là cơ quan có thẩm quyền hoặc tổ chức lớn",words:["công an","cảnh sát","tòa án","toà án","viện kiểm sát","ngân hàng","bộ công an","điện lực","thuế","bảo hiểm"]},
+{id:"payment",label:"Có yêu cầu chuyển tiền, cung cấp mã xác thực hoặc thông tin tài chính",words:["chuyển tiền","chuyển khoản","otp","mã xác thực","mật khẩu","số tài khoản","mã pin","quét qr","thanh toán"]},
+{id:"linkapp",label:"Có yêu cầu bấm link, cài ứng dụng hoặc cho phép truy cập thiết bị",words:["bấm link","đường link","link","cài ứng dụng","cài app","tải ứng dụng","apk","điều khiển điện thoại","chia sẻ màn hình"]},
+{id:"family",label:"Có tình huống người thân gặp nạn được dùng để tạo áp lực",words:["tai nạn","cấp cứu","bệnh viện","bắt cóc","con tôi","cháu tôi","người nhà"]}
+];
+
+function scenario(t){
+t=t.toLowerCase();
+if(["công an","cảnh sát","tòa án","toà án","viện kiểm sát"].some(w=>t.includes(w)))return"Mạo danh cơ quan nhà nước";
+if(["ngân hàng","otp","tài khoản","chuyển khoản"].some(w=>t.includes(w)))return"Ngân hàng / thanh toán đáng ngờ";
+if(["tai nạn","bệnh viện","cấp cứu","con tôi","cháu tôi"].some(w=>t.includes(w)))return"Khẩn cấp liên quan người thân";
+return"Tình huống đáng ngờ khác";
+}
+
+function analyze(text){
+const t=text.toLowerCase(), hits=rules.filter(r=>r.words.some(w=>t.includes(w)));
+const score=Math.min(5,hits.length);
+let level="Cần kiểm tra",cls="medium";
+if(score>=3){level="Rủi ro cao";cls="high"}else if(score<=1){level="Chưa đủ dấu hiệu";cls="low"}
+let action="Chưa làm theo yêu cầu. Hãy xác minh bằng một kênh độc lập trước khi tiếp tục.";
+if(score>=3)action="Dừng lại ngay. Chưa chuyển tiền, chưa cung cấp OTP/mật khẩu, chưa cài ứng dụng. Hãy gọi lại bằng số chính thức hoặc liên hệ người thân tin cậy.";
+else if(score===2)action="Tạm dừng và kiểm tra lại. Không dùng số điện thoại hoặc đường link do người lạ vừa cung cấp để xác minh.";
+return{hits,score,level,cls,scenario:scenario(text),action};
+}
+
+function showResult(r){
+resultCard.classList.remove("hidden");pilotCard.classList.remove("hidden");
+riskBanner.classList.remove("high","low");if(r.cls==="high")riskBanner.classList.add("high");if(r.cls==="low")riskBanner.classList.add("low");
+riskLevel.textContent=r.level;riskScore.textContent=`${r.score}/5`;signalsList.innerHTML="";
+let li=document.createElement("li");li.innerHTML=`<b>Nhóm tình huống:</b> ${r.scenario}`;signalsList.appendChild(li);
+if(!r.hits.length){li=document.createElement("li");li.textContent="Chưa phát hiện đủ dấu hiệu bằng bộ quy tắc mẫu. Điều này không có nghĩa là tình huống chắc chắn an toàn.";signalsList.appendChild(li)}
+else r.hits.forEach(h=>{li=document.createElement("li");li.textContent=h.label;signalsList.appendChild(li)});
+mainAction.textContent=r.action;resultCard.dataset.scenario=r.scenario;resultCard.dataset.score=r.score;resultCard.dataset.level=r.level;
+updateTrusted();setTimeout(()=>resultCard.scrollIntoView({behavior:"smooth"}),100);
+}
+
+$("analyzeButton").onclick=()=>{const t=story.value.trim();if(!t){story.focus();return}showResult(analyze(t))};
+document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>story.value=demos[b.dataset.demo]);
+$("fillDemo").onclick=()=>story.value=demos.police;
+$("restart").onclick=()=>{story.value="";resultCard.classList.add("hidden");pilotCard.classList.add("hidden");$("inputCard").scrollIntoView({behavior:"smooth"});story.focus()};
+$("officialCheck").onclick=()=>officialDialog.showModal();
+
+function updateTrusted(){
+const name=localStorage.getItem("antam_contact_name")||"người thân tin cậy";
+const phone=localStorage.getItem("antam_contact_phone")||"";
+trustedCall.textContent=`📞 Gọi ${name}`;
+trustedCall.href=phone?`tel:${phone.replace(/\s+/g,"")}`:"#";
+}
+trustedCall.onclick=e=>{if(!localStorage.getItem("antam_contact_phone")){e.preventDefault();settingsDialog.showModal()}};
+$("openSettings").onclick=()=>{
+$("contactName").value=localStorage.getItem("antam_contact_name")||"";
+$("contactPhone").value=localStorage.getItem("antam_contact_phone")||"";
+$("slowSpeech").checked=localStorage.getItem("antam_slow_speech")!=="false";
+settingsDialog.showModal();
+};
+$("saveSettings").onclick=()=>{
+localStorage.setItem("antam_contact_name",$("contactName").value.trim());
+localStorage.setItem("antam_contact_phone",$("contactPhone").value.trim());
+localStorage.setItem("antam_slow_speech",String($("slowSpeech").checked));
+updateTrusted();settingsDialog.close();
+};
+
+const officialCaseSeed=[
+{id:"official-police",title:"Công an yêu cầu chuyển tiền để điều tra",summary:"Người gọi tự xưng là công an/cơ quan nhà nước, yêu cầu chuyển tiền và giữ bí mật.",signals:["Mạo danh cơ quan có thẩm quyền","Yêu cầu chuyển tiền","Yêu cầu giữ bí mật"],action:"Không chuyển tiền. Tự tìm số điện thoại chính thức của cơ quan để xác minh.",uses:12400},
+{id:"official-bank",title:"Ngân hàng yêu cầu OTP hoặc bấm đường link",summary:"Người liên hệ nói tài khoản sắp bị khóa và yêu cầu cung cấp OTP hoặc truy cập link lạ.",signals:["Tạo cảm giác khẩn cấp","Yêu cầu OTP/thông tin tài chính","Đường link không xác minh"],action:"Không cung cấp OTP. Mở ứng dụng ngân hàng chính thức hoặc gọi số ở mặt sau thẻ.",uses:8700},
+{id:"official-family",title:"Người thân gặp nạn cần chuyển viện phí gấp",summary:"Người gọi tạo tình huống khẩn cấp liên quan người thân và yêu cầu chuyển tiền ngay.",signals:["Kích hoạt cảm xúc sợ hãi","Thúc ép chuyển tiền","Hạn chế thời gian xác minh"],action:"Tạm dừng. Gọi trực tiếp cho người thân hoặc bệnh viện bằng số tự tìm được.",uses:6900}
+];
+const communitySeed=[
+{id:"community-electric",title:"Tự xưng điện lực, gửi QR và dọa cắt điện",summary:"Người gọi tự xưng là điện lực, yêu cầu quét QR và thanh toán ngay để tránh bị cắt điện.",status:"trending",confirmations:126,uses:214,template:"Có người tự xưng là điện lực gửi mã QR, nói tôi phải đóng tiền ngay nếu không sẽ bị cắt điện."},
+{id:"community-delivery",title:"Bưu kiện bị giữ, yêu cầu nộp phí qua link",summary:"Tin nhắn nói bưu kiện đang bị giữ và yêu cầu thanh toán phí qua một đường link.",status:"review",confirmations:48,uses:93,template:"Tôi nhận tin nhắn nói bưu kiện bị giữ, phải bấm link và nộp phí ngay."}
+];
+function storedCommunity(){try{return JSON.parse(localStorage.getItem("antam_community_cases")||"[]")}catch{return[]}}
+function saveCommunity(data){localStorage.setItem("antam_community_cases",JSON.stringify(data))}
+function fmtCount(n){return n>=1000?(Math.round(n/100)/10)+"K":String(n)}
+function officialCard(c){return `<article class="case-card"><span class="badge official">✓ ĐÃ ĐƯỢC AN TÂM XÁC MINH</span><h3>${c.title}</h3><p>${c.summary}</p><p><b>Dấu hiệu thường gặp</b></p><ul>${c.signals.map(s=>`<li>${s}</li>`).join("")}</ul><p class="mainaction">${c.action}</p><div class="case-meta">${fmtCount(c.uses)} lượt sử dụng</div><div class="case-actions"><button class="primary-mini" onclick="useLibraryTemplate('${c.id}')">Dùng tình huống này để kiểm tra</button></div></article>`}
+function statusBadge(status){if(status==="trending")return '<span class="badge trending">🔥 NHIỀU NGƯỜI GẶP</span>';if(status==="review")return '<span class="badge review">🔍 AN TÂM ĐANG XÁC MINH</span>';return '<span class="badge community">👥 MỚI TỪ CỘNG ĐỒNG · CHƯA XÁC MINH</span>'}
+function communityCard(c){return `<article class="case-card">${statusBadge(c.status)}<h3>${c.title}</h3><p>${c.summary||c.template}</p><div class="case-meta"><b>${c.confirmations||0}</b> người cho biết họ cũng gặp tình huống tương tự · ${c.uses||0} lượt dùng mẫu</div><div class="case-actions"><button class="primary-mini" onclick="confirmCommunity('${c.id}')">Tôi cũng gặp tình huống này</button><button onclick="useCommunityTemplate('${c.id}')">Dùng mẫu này để kiểm tra</button><button class="tinybtn" onclick="reportCommunity('${c.id}')">Báo cáo nội dung</button></div><p class="library-note">Nội dung cộng đồng chưa phải hướng dẫn chính thức từ An Tâm.</p></article>`}
+function renderLibrary(){officialCases.innerHTML=officialCaseSeed.map(officialCard).join("");communityCases.innerHTML=[...communitySeed,...storedCommunity()].map(communityCard).join("")}
+function showLibrary(tab="officialCases"){libraryCard.classList.remove("hidden");submitCard.classList.add("hidden");document.querySelectorAll(".tabbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab));officialCases.classList.toggle("hidden",tab!=="officialCases");communityCases.classList.toggle("hidden",tab!=="communityCases");renderLibrary();libraryCard.scrollIntoView({behavior:"smooth"})}
+$("openLibrary").onclick=()=>showLibrary();$("closeLibrary").onclick=()=>libraryCard.classList.add("hidden");
+document.querySelectorAll(".tabbtn").forEach(b=>b.onclick=()=>showLibrary(b.dataset.tab));
+$("openSubmit").onclick=()=>{submitCard.classList.remove("hidden");libraryCard.classList.add("hidden");submitCard.scrollIntoView({behavior:"smooth"})};$("closeSubmit").onclick=()=>submitCard.classList.add("hidden");
+function useLibraryTemplate(id){const c=officialCaseSeed.find(x=>x.id===id);if(!c)return;story.value=c.summary;$("inputCard").scrollIntoView({behavior:"smooth"});story.focus()}
+function allCommunity(){return [...communitySeed,...storedCommunity()]}
+function useCommunityTemplate(id){const c=allCommunity().find(x=>x.id===id);if(!c)return;story.value=c.template||c.summary;const stored=storedCommunity();const s=stored.find(x=>x.id===id);if(s){s.uses=(s.uses||0)+1;saveCommunity(stored)}$("inputCard").scrollIntoView({behavior:"smooth"});story.focus()}
+function confirmCommunity(id){let seed=communitySeed.find(x=>x.id===id);if(seed){const key="antam_confirm_"+id;let n=Number(localStorage.getItem(key)||0)+1;localStorage.setItem(key,String(n));seed.confirmations+=1;renderLibrary();return}const stored=storedCommunity();const c=stored.find(x=>x.id===id);if(c){c.confirmations=(c.confirmations||0)+1;if(c.confirmations>=5)c.status="trending";saveCommunity(stored);renderLibrary()}}
+function reportCommunity(id){alert("Đã ghi nhận báo cáo trong bản demo. Trong sản phẩm thật, nội dung sẽ được đưa vào hàng chờ kiểm duyệt.")}
+function draftCase(){const combined=[newCaseStory.value,newCaseContact.value,newCaseRequest.value,newCaseSuspicion.value].filter(Boolean).join(". ").trim();if(!combined){newCaseStory.focus();return}const r=analyze(combined);const title=(newCaseContact.value?`Tự xưng ${newCaseContact.value.trim()}: `:"")+(newCaseRequest.value.trim()||r.scenario);$("draftTitle").textContent=title.slice(0,100);$("draftSummary").textContent=combined;$("draftCategory").textContent=r.scenario;$("draftSignals").innerHTML=(r.hits.length?r.hits.map(h=>h.label):["Chưa đủ dấu hiệu trong bộ quy tắc mẫu — cần cộng đồng và nhóm An Tâm xem xét"]).map(s=>`<li>${s}</li>`).join("");$("caseDraft").classList.remove("hidden");submitCard.dataset.draft=JSON.stringify({title:title.slice(0,100),summary:combined,template:combined,category:r.scenario});$("caseDraft").scrollIntoView({behavior:"smooth"})}
+$("buildDraft").onclick=draftCase;
+$("submitCommunityCase").onclick=()=>{if(!$("shareConsent").checked){$("communitySubmitStatus").textContent="Vui lòng xác nhận đồng ý chia sẻ sau khi đã loại bỏ thông tin cá nhân.";return}let d={};try{d=JSON.parse(submitCard.dataset.draft||"{}")}catch{}if(!d.summary){$("communitySubmitStatus").textContent="Vui lòng tạo bản nháp trước khi gửi.";return}const data=storedCommunity();data.unshift({id:"user-"+Date.now(),title:d.title||"Tình huống cộng đồng mới",summary:d.summary,template:d.template,status:"new",confirmations:1,uses:0,created:new Date().toISOString()});saveCommunity(data);$("communitySubmitStatus").textContent="Đã thêm vào Thư viện Cộng đồng trên thiết bị này. Tình huống vẫn ở trạng thái chưa xác minh.";$("shareConsent").checked=false;setTimeout(()=>showLibrary("communityCases"),500)};
+renderLibrary();
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null,listening=false;
+if(SR){
+rec=new SR();rec.lang="vi-VN";rec.interimResults=true;rec.continuous=false;
+rec.onstart=()=>{listening=true;micButton.classList.add("listening");micText.textContent="Đang nghe...";speechStatus.textContent="Bác cứ nói tự nhiên. Không đọc OTP, mật khẩu hoặc số tài khoản."};
+rec.onresult=e=>{let f="",i="";for(let x=e.resultIndex;x<e.results.length;x++){const t=e.results[x][0].transcript;e.results[x].isFinal?f+=t:i+=t}story.value=(f||i).trim()};
+rec.onerror=e=>speechStatus.textContent=`Không nhận được giọng nói (${e.error}). Bác có thể nhập bằng bàn phím.`;
+rec.onend=()=>{listening=false;micButton.classList.remove("listening");micText.textContent="Bấm để nói"};
+micButton.onclick=()=>listening?rec.stop():rec.start();
+}else{micButton.disabled=true;micButton.style.opacity=".55";micText.textContent="Trình duyệt chưa hỗ trợ";speechStatus.textContent="Vui lòng nhập bằng bàn phím hoặc thử Chrome trên Android."}
+
+if(SR){
+const submitRec=new SR();submitRec.lang="vi-VN";submitRec.interimResults=true;submitRec.continuous=false;let submitListening=false;
+submitRec.onstart=()=>{submitListening=true;$("submitMic").classList.add("listening");$("submitMicText").textContent="Đang nghe..."};
+submitRec.onresult=e=>{let f="",i="";for(let x=e.resultIndex;x<e.results.length;x++){const t=e.results[x][0].transcript;e.results[x].isFinal?f+=t:i+=t}newCaseStory.value=(f||i).trim()};
+submitRec.onend=()=>{submitListening=false;$("submitMic").classList.remove("listening");$("submitMicText").textContent="Bấm để kể lại"};
+submitRec.onerror=()=>{$("submitMicText").textContent="Không nhận được giọng nói"};
+$("submitMic").onclick=()=>submitListening?submitRec.stop():submitRec.start();
+}else{$("submitMic").disabled=true;$("submitMic").style.opacity=".55";$("submitMicText").textContent="Trình duyệt chưa hỗ trợ"}
+
+$("readResult").onclick=()=>{
+if(!("speechSynthesis"in window)){alert("Trình duyệt này chưa hỗ trợ đọc thành tiếng.");return}
+speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(`${riskLevel.textContent}. ${mainAction.textContent}`);u.lang="vi-VN";u.rate=localStorage.getItem("antam_slow_speech")==="false"?1:.82;speechSynthesis.speak(u);
+};
+
+function rows(){try{return JSON.parse(localStorage.getItem("antam_pilot_feedback")||"[]")}catch{return[]}}
+$("saveFeedback").onclick=()=>{
+const vals=["understood","inputPreference","chosenAction","reuse"].map(id=>$(id).value);
+if(vals.some(v=>!v)){$("saveStatus").textContent="Vui lòng chọn đủ 4 mục phản hồi chính.";return}
+const data=rows();data.push({timestamp:new Date().toISOString(),scenario:resultCard.dataset.scenario||"",risk_score:resultCard.dataset.score||"",risk_level:resultCard.dataset.level||"",understood:vals[0],input_preference:vals[1],chosen_action:vals[2],reuse:vals[3],note:$("feedbackNote").value.trim()});
+localStorage.setItem("antam_pilot_feedback",JSON.stringify(data));$("saveStatus").textContent=`Đã lưu phản hồi trên thiết bị này. Tổng số: ${data.length}`;$("feedbackNote").value="";
+};
+$("exportCsv").onclick=()=>{
+const data=rows();if(!data.length){$("saveStatus").textContent="Chưa có phản hồi nào để xuất.";return}
+const h=["timestamp","scenario","risk_score","risk_level","understood","input_preference","chosen_action","reuse","note"],esc=v=>`"${String(v??"").replaceAll('"','""')}"`;
+const csv=[h.join(","),...data.map(r=>h.map(k=>esc(r[k])).join(","))].join("\n");
+const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`an-tam-pilot-feedback-${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(url);
+};
+
+updateTrusted();
+
+</script>
+</body>
+</html>
