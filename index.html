@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d5548">
   <meta name="description" content="An Tâm giúp người lớn tuổi dừng lại, kiểm tra và xác minh tình huống đáng ngờ trước khi hành động.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="An Tâm">
   <title>An Tâm | Kiểm tra trước khi hành động</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,8 +23,12 @@
       <span class="brand-mark" aria-hidden="true">安</span>
       <span><strong>An Tâm</strong><small>Kiểm tra trước khi hành động</small></span>
     </a>
-    <button class="icon-button" id="openSettings" type="button" aria-haspopup="dialog">⚙ <span>Cài đặt</span></button>
+    <div class="topbar-actions">
+      <button class="install-button hidden" id="installApp" type="button">＋ <span>Cài lên điện thoại</span></button>
+      <button class="icon-button" id="openSettings" type="button" aria-haspopup="dialog">⚙ <span>Cài đặt</span></button>
+    </div>
   </header>
+  <div class="offline-banner hidden" id="offlineBanner" role="status">Đang ngoại tuyến · Các chức năng đã lưu vẫn dùng được</div>
 
   <main id="main">
     <section class="hero section-wrap" aria-labelledby="heroTitle">
@@ -97,7 +108,10 @@
           <p class="eyebrow">BƯỚC 2 · KẾT QUẢ KIỂM TRA</p>
           <h2 id="resultTitle">Việc an toàn nhất lúc này</h2>
         </div>
-        <button class="button button-secondary" id="readResult" type="button">🔊 Đọc kết quả</button>
+        <div class="result-tools">
+          <button class="button button-secondary" id="shareResult" type="button">⌁ Chia sẻ</button>
+          <button class="button button-secondary" id="readResult" type="button">🔊 Đọc kết quả</button>
+        </div>
       </div>
       <div class="risk-banner" id="riskBanner">
         <div><span class="risk-icon" id="riskIcon" aria-hidden="true">!</span><div><small>MỨC ĐỘ ĐỀ XUẤT</small><strong id="riskLevel">Cần kiểm tra thêm</strong></div></div>
@@ -189,6 +203,16 @@
       <div class="warning-box"><strong>Không gọi lại số vừa liên hệ và không mở đường link họ vừa gửi.</strong></div>
       <ol class="verify-list"><li>Tự mở ứng dụng hoặc website chính thức của tổ chức.</li><li>Gọi số ở mặt sau thẻ ngân hàng hoặc số đã lưu từ trước.</li><li>Mô tả tình huống, nhưng không đọc OTP hay mật khẩu.</li></ol>
       <div class="official-links"><a class="button button-secondary" href="https://ntrust.vn/" target="_blank" rel="noopener noreferrer">Mở nTrust</a><a class="button button-secondary" href="https://chongluadao.vn/" target="_blank" rel="noopener noreferrer">Mở Chống Lừa Đảo</a></div>
+    </form>
+  </dialog>
+
+  <dialog id="installDialog">
+    <form method="dialog" class="dialog-card">
+      <div class="dialog-heading"><div><p class="eyebrow">DÙNG NHƯ ỨNG DỤNG</p><h2>Cài An Tâm lên điện thoại</h2></div><button class="dialog-close" value="cancel" aria-label="Đóng">×</button></div>
+      <div class="install-brand"><img src="icons/icon.svg" alt=""><div><strong>An Tâm</strong><small>Mở nhanh từ màn hình chính, dùng được cả khi mạng chập chờn.</small></div></div>
+      <div id="installPromptContent" class="install-steps"></div>
+      <button class="button button-primary hidden" id="confirmInstall" type="button">Cài ứng dụng</button>
+      <p class="field-help">An Tâm là web app. Không cần tải từ kho ứng dụng và có thể gỡ bất kỳ lúc nào.</p>
     </form>
   </dialog>
   <script src="app.js"></script>

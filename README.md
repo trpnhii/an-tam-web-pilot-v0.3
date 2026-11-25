@@ -12,6 +12,9 @@ Prototype tĩnh cho **An Tâm** — trợ lý an toàn số voice-first giúp ng
 - soạn tin nhắn cho người thân sau khi người dùng đồng ý;
 - chế độ chữ lớn, tương phản cao và tốc độ đọc chậm;
 - lưu phản hồi pilot trong trình duyệt và xuất CSV.
+- cài lên màn hình chính như ứng dụng PWA trên Android/iPhone;
+- dùng lại giao diện đã lưu khi mất mạng hoặc mạng không ổn định;
+- chia sẻ kết quả bằng bảng chia sẻ hệ thống của điện thoại.
 
 > Đây là prototype hỗ trợ quyết định, không phải công cụ xác nhận chắc chắn một tình huống là an toàn. Ảnh chỉ được xem trước; phiên bản tĩnh hiện chưa có OCR hoặc kết nối threat-intelligence theo thời gian thực.
 
@@ -43,6 +46,13 @@ Lần đầu sử dụng:
 4. Mở tab **Actions** để theo dõi workflow `Deploy static site to GitHub Pages`.
 
 Website dự kiến: `https://trpnhii.github.io/an-tam-web-pilot-v0.3/`
+
+## Cài trên điện thoại
+
+- **Android/Chrome:** mở website, bấm **Cài lên điện thoại** rồi xác nhận **Cài ứng dụng**. Nếu trình duyệt không hiện hộp cài tự động, mở menu và chọn **Thêm vào màn hình chính**.
+- **iPhone/Safari:** mở website bằng Safari, bấm **Chia sẻ**, chọn **Thêm vào Màn hình chính**, rồi bấm **Thêm**.
+
+Sau khi cài, An Tâm mở ở chế độ standalone như một ứng dụng thông thường. Các file giao diện cốt lõi được lưu để vẫn mở được khi mạng chập chờn.
 
 ## Quyền riêng tư của prototype
 

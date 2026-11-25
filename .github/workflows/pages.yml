@@ -24,11 +24,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Validate JavaScript
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check service-worker.js
+          node -e "JSON.parse(require('fs').readFileSync('manifest.webmanifest', 'utf8'))"
       - name: Prepare static artifact
         run: |
           mkdir public
-          cp index.html styles.css app.js .nojekyll public/
+          cp index.html styles.css app.js manifest.webmanifest service-worker.js .nojekyll public/
+          cp -r icons public/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

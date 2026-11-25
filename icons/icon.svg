@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Biểu tượng An Tâm</title>
+  <desc id="desc">Chữ An màu trắng trên nền xanh bo tròn</desc>
+  <rect width="512" height="512" rx="120" fill="#0d6656"/>
+  <circle cx="256" cy="256" r="172" fill="#ffffff" opacity=".08"/>
+  <path d="M135 188h242v42H135zm34-65h174v41H169zm-1 131h176v41H168z" fill="#fff" opacity=".92"/>
+  <path d="M192 164v97c0 67-25 105-75 132l27 35c39-20 66-48 82-83 22 40 55 68 99 86l24-39c-50-20-82-51-96-95h117v-43H238v-90z" fill="#fff"/>
+  <circle cx="256" cy="86" r="18" fill="#f5bd45"/>
+</svg>

@@ -1,0 +1,44 @@
+{
+  "id": "./",
+  "name": "An Tâm — Kiểm tra trước khi hành động",
+  "short_name": "An Tâm",
+  "description": "Trợ lý an toàn số giúp người lớn tuổi kiểm tra tình huống đáng ngờ trước khi hành động.",
+  "lang": "vi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#f4f1e9",
+  "theme_color": "#0d5548",
+  "categories": ["utilities", "security", "lifestyle"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Kiểm tra tình huống",
+      "short_name": "Kiểm tra",
+      "description": "Mở nhanh phần kiểm tra tình huống đáng ngờ",
+      "url": "./#checker",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}

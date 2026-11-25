@@ -31,6 +31,7 @@ const cases = [
 
 let currentResult = null;
 let selectedImageUrl = "";
+let deferredInstallPrompt = null;
 
 function normalize(text) { return text.toLocaleLowerCase("vi-VN").normalize("NFC"); }
 
@@ -143,6 +144,68 @@ function speakResult() {
   window.speechSynthesis.cancel(); const utterance = new SpeechSynthesisUtterance(`${currentResult.level}. ${currentResult.action}`); utterance.lang = "vi-VN"; utterance.rate = localStorage.getItem("antam_slow_speech") === "false" ? 1 : .82; window.speechSynthesis.speak(utterance);
 }
 
+async function shareResultFromPhone() {
+  if (!currentResult) return;
+  const text = `An Tâm: ${currentResult.level}. ${currentResult.action}\n\nTình huống: ${currentResult.scenario}`;
+  const shareData = { title: "Kết quả kiểm tra từ An Tâm", text, url: window.location.href.split("#")[0] };
+  if (navigator.share) {
+    try { await navigator.share(shareData); } catch (error) { if (error.name !== "AbortError") window.alert("Chưa thể mở bảng chia sẻ trên thiết bị này."); }
+    return;
+  }
+  try { await navigator.clipboard.writeText(`${text}\n${shareData.url}`); $("shareResult").textContent = "Đã sao chép"; setTimeout(() => { $("shareResult").textContent = "⌁ Chia sẻ"; }, 1800); }
+  catch { window.alert("Trình duyệt chưa hỗ trợ chia sẻ. Bác có thể dùng chức năng chia sẻ trong menu trình duyệt."); }
+}
+
+function isStandalone() {
+  return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+}
+
+function renderInstallInstructions() {
+  const container = $("installPromptContent");
+  container.replaceChildren();
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const steps = deferredInstallPrompt
+    ? ["Bấm nút Cài ứng dụng bên dưới.", "Xác nhận Cài đặt trong cửa sổ của trình duyệt.", "Mở An Tâm từ biểu tượng trên màn hình chính."]
+    : isIOS
+      ? ["Mở trang này bằng Safari.", "Bấm nút Chia sẻ ở thanh công cụ.", "Chọn Thêm vào Màn hình chính, rồi bấm Thêm."]
+      : ["Mở menu của Chrome hoặc trình duyệt đang dùng.", "Chọn Cài đặt ứng dụng hoặc Thêm vào màn hình chính.", "Xác nhận để tạo biểu tượng An Tâm trên điện thoại."];
+  const list = document.createElement("ol");
+  steps.forEach((step) => { const item = document.createElement("li"); item.textContent = step; list.appendChild(item); });
+  container.appendChild(list);
+  $("confirmInstall").classList.toggle("hidden", !deferredInstallPrompt);
+}
+
+function openInstallDialog() {
+  renderInstallInstructions();
+  $("installDialog").showModal();
+}
+
+async function confirmInstall() {
+  if (!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  const choice = await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  $("confirmInstall").classList.add("hidden");
+  if (choice.outcome === "accepted") { $("installApp").classList.add("hidden"); $("installDialog").close(); }
+}
+
+function setupInstallExperience() {
+  const button = $("installApp");
+  if (!isStandalone() && window.matchMedia("(max-width: 860px)").matches) button.classList.remove("hidden");
+  window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); deferredInstallPrompt = event; if (!isStandalone()) button.classList.remove("hidden"); });
+  window.addEventListener("appinstalled", () => { deferredInstallPrompt = null; button.classList.add("hidden"); });
+  button.addEventListener("click", openInstallDialog);
+  $("confirmInstall").addEventListener("click", confirmInstall);
+}
+
+function setupOfflineSupport() {
+  const updateStatus = () => $("offlineBanner").classList.toggle("hidden", navigator.onLine);
+  window.addEventListener("online", updateStatus);
+  window.addEventListener("offline", updateStatus);
+  updateStatus();
+  if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {}));
+}
+
 function applySettings() {
   document.body.classList.toggle("large-text", localStorage.getItem("antam_large_text") === "true");
   document.body.classList.toggle("high-contrast", localStorage.getItem("antam_high_contrast") === "true");
@@ -199,7 +262,7 @@ function exportFeedback() {
 $("analyzeButton").addEventListener("click", analyzeSituation);
 $("fillDemo").addEventListener("click", () => useDemo("police"));
 document.querySelectorAll("[data-demo]").forEach((button) => button.addEventListener("click", () => useDemo(button.dataset.demo)));
-$("restart").addEventListener("click", resetChecker); $("readResult").addEventListener("click", speakResult); $("officialCheck").addEventListener("click", () => $("officialDialog").showModal()); $("trustedShare").addEventListener("click", openShareDialog); $("openSettings").addEventListener("click", openSettings); $("saveSettings").addEventListener("click", saveSettings); $("sendMessage").addEventListener("click", sendMessage); $("copyMessage").addEventListener("click", copyMessage); $("removeImage").addEventListener("click", removeImage); $("feedbackForm").addEventListener("submit", saveFeedback); $("exportCsv").addEventListener("click", exportFeedback);
+$("restart").addEventListener("click", resetChecker); $("readResult").addEventListener("click", speakResult); $("shareResult").addEventListener("click", shareResultFromPhone); $("officialCheck").addEventListener("click", () => $("officialDialog").showModal()); $("trustedShare").addEventListener("click", openShareDialog); $("openSettings").addEventListener("click", openSettings); $("saveSettings").addEventListener("click", saveSettings); $("sendMessage").addEventListener("click", sendMessage); $("copyMessage").addEventListener("click", copyMessage); $("removeImage").addEventListener("click", removeImage); $("feedbackForm").addEventListener("submit", saveFeedback); $("exportCsv").addEventListener("click", exportFeedback);
 screenshot.addEventListener("change", () => { const file = screenshot.files && screenshot.files[0]; if (!file) return removeImage(); if (selectedImageUrl) URL.revokeObjectURL(selectedImageUrl); selectedImageUrl = URL.createObjectURL(file); $("imagePreview").src = selectedImageUrl; $("imagePreviewWrap").classList.remove("hidden"); $("fileLabel").textContent = file.name; });
 
-renderCases(); setupSpeechRecognition(); applySettings();
+renderCases(); setupSpeechRecognition(); applySettings(); setupInstallExperience(); setupOfflineSupport();
