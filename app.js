@@ -103,7 +103,10 @@ function renderResult(result, className, icon) {
   setTimeout(() => resultCard.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
 }
 
-function useDemo(name) { story.value = demos[name]; $("checker").scrollIntoView({ behavior: "smooth", block: "start" }); story.focus(); }
+function useDemo(name) {
+  if ($("checker").classList.contains("hidden")) { window.location.href = `app.html?demo=${encodeURIComponent(name)}`; return; }
+  story.value = demos[name]; $("checker").scrollIntoView({ behavior: "smooth", block: "start" }); story.focus();
+}
 
 function renderCases() {
   const grid = $("caseGrid"); grid.replaceChildren();

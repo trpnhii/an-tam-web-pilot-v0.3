@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b6b58">
+  <meta name="description" content="An Tâm giúp bác kiểm tra tình huống đáng ngờ trước khi hành động.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="An Tâm">
+  <title>An Tâm | Trợ lý an toàn</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="app-ui.css">
+</head>
+<body>
+  <a class="skip-link" href="#appMain">Đi tới nội dung chính</a>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="app-brand" href="app.html" aria-label="An Tâm, trang chủ">
+        <img src="icons/icon.svg" alt="">
+        <span><strong>An Tâm</strong><small>Trợ lý an toàn</small></span>
+      </a>
+      <div class="header-actions">
+        <button id="installAppButton" class="round-button install-app hidden" type="button" aria-label="Cài An Tâm">＋</button>
+        <button id="openAppSettings" class="round-button" type="button" aria-label="Mở cài đặt">⚙</button>
+      </div>
+    </header>
+
+    <div id="appOffline" class="app-offline hidden" role="status">Đang ngoại tuyến · Bác vẫn có thể dùng các chức năng đã lưu</div>
+
+    <main id="appMain">
+      <section class="app-screen active" id="homeScreen" data-screen="home" aria-labelledby="homeTitle">
+        <div class="protection-card">
+          <div class="shield-visual" aria-hidden="true">
+            <svg viewBox="0 0 64 72"><path d="M32 2 58 12v20c0 17-10 29-26 38C16 61 6 49 6 32V12L32 2Z" fill="currentColor" opacity=".16"/><path d="m20 35 8 8 17-19" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <p>An Tâm đang sẵn sàng</p>
+          <h1 id="homeTitle">Có chuyện gì khiến bác thấy đáng ngờ?</h1>
+          <p class="card-subtitle">Bác cứ kể tự nhiên. An Tâm sẽ giúp bác kiểm tra trước khi hành động.</p>
+        </div>
+
+        <button class="talk-button" id="appMicButton" type="button">
+          <span class="talk-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><rect x="17" y="5" width="14" height="25" rx="7" fill="currentColor"/><path d="M11 23c0 8 5 13 13 13s13-5 13-13M24 36v7M17 43h14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          </span>
+          <span><strong id="appMicText">Bấm để nói</strong><small id="appMicStatus">Bác nói bằng tiếng Việt</small></span>
+        </button>
+
+        <div class="or-divider"><span>hoặc</span></div>
+
+        <div class="input-actions">
+          <button class="input-action" id="openTextInput" type="button">
+            <span aria-hidden="true">Aa</span><strong>Nhập bằng chữ</strong><small>Kể lại chuyện vừa xảy ra</small>
+          </button>
+          <button class="input-action" id="openExtraInput" type="button">
+            <span aria-hidden="true">▧</span><strong>Thêm ảnh hoặc link</strong><small>Gửi thêm thông tin để kiểm tra</small>
+          </button>
+        </div>
+
+        <aside class="remember-card" aria-labelledby="rememberTitle">
+          <div class="remember-icon" aria-hidden="true">!</div>
+          <div><h2 id="rememberTitle">Khi bị thúc giục</h2><p>Chưa chuyển tiền · Chưa đọc OTP · Chưa bấm link</p></div>
+        </aside>
+      </section>
+
+      <section class="app-screen" id="casesScreen" data-screen="cases" aria-labelledby="casesTitle">
+        <div class="screen-heading"><p class="app-eyebrow">TÌNH HUỐNG MẪU</p><h1 id="casesTitle">Bác đang gặp trường hợp nào?</h1><p>Chạm vào một tình huống gần giống để An Tâm điền sẵn nội dung.</p></div>
+        <div class="sample-list">
+          <button type="button" data-app-demo="police"><span class="sample-icon">🏛</span><span><strong>Tự xưng là công an</strong><small>Yêu cầu chuyển tiền để điều tra</small></span></button>
+          <button type="button" data-app-demo="bank"><span class="sample-icon">▣</span><span><strong>Ngân hàng hỏi OTP</strong><small>Báo tài khoản sắp bị khóa</small></span></button>
+          <button type="button" data-app-demo="family"><span class="sample-icon">♡</span><span><strong>Người thân gặp nạn</strong><small>Yêu cầu gửi viện phí gấp</small></span></button>
+          <button type="button" data-app-demo="delivery"><span class="sample-icon">□</span><span><strong>Bưu kiện cần đóng phí</strong><small>Gửi đường link thanh toán lạ</small></span></button>
+        </div>
+      </section>
+
+      <section class="app-screen" id="helpScreen" data-screen="help" aria-labelledby="helpTitle">
+        <div class="screen-heading"><p class="app-eyebrow">TRỢ GIÚP</p><h1 id="helpTitle">Bốn việc giúp bác an toàn hơn</h1></div>
+        <ol class="help-list">
+          <li><span>1</span><div><strong>Dừng lại</strong><p>Không làm theo khi đang sợ hãi hoặc bị thúc giục.</p></div></li>
+          <li><span>2</span><div><strong>Không chia sẻ bí mật</strong><p>Không đọc OTP, mật khẩu hoặc mã PIN cho bất kỳ ai.</p></div></li>
+          <li><span>3</span><div><strong>Tự tìm kênh chính thức</strong><p>Gọi số ở mặt sau thẻ hoặc mở ứng dụng đã cài từ trước.</p></div></li>
+          <li><span>4</span><div><strong>Hỏi người tin cậy</strong><p>Gọi cho con cháu hoặc người bác tin tưởng trước khi chuyển tiền.</p></div></li>
+        </ol>
+        <button class="wide-secondary" id="helpStartCheck" type="button">Kiểm tra một tình huống</button>
+      </section>
+
+      <section class="app-screen result-screen" id="appResultScreen" data-screen="result" aria-labelledby="appResultTitle" aria-live="polite">
+        <button class="back-home-button" id="resultBackHome" type="button">× <span>Đóng kết quả</span></button>
+        <div class="result-status" id="appRiskStatus">
+          <div class="result-symbol" id="appRiskSymbol" aria-hidden="true">!</div>
+          <p>KẾT QUẢ KIỂM TRA</p>
+          <h1 id="appResultTitle">Có dấu hiệu rủi ro cao</h1>
+          <span id="appRiskCount">0 dấu hiệu đáng ngờ</span>
+        </div>
+        <div class="safe-action">
+          <p>VIỆC AN TOÀN NHẤT LÚC NÀY</p>
+          <h2 id="appSafeAction"></h2>
+        </div>
+        <div class="finding-card">
+          <h2>An Tâm nhận thấy</h2>
+          <p class="case-type" id="appCaseType"></p>
+          <ul id="appSignals"></ul>
+        </div>
+        <div class="result-buttons">
+          <button class="wide-primary" id="appReadResult" type="button">🔊 Nghe kết quả</button>
+          <button class="wide-secondary" id="appAskFamily" type="button">♡ Hỏi người thân</button>
+          <button class="wide-quiet" id="appOfficialCheck" type="button">✓ Cách xác minh chính thức</button>
+        </div>
+        <p class="result-disclaimer">An Tâm hỗ trợ bác ra quyết định, không khẳng định chắc chắn một tình huống là an toàn.</p>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Điều hướng chính">
+      <button class="active" type="button" data-nav-screen="home"><span aria-hidden="true">⌂</span><strong>Trang chủ</strong></button>
+      <button type="button" data-nav-screen="cases"><span aria-hidden="true">▤</span><strong>Tình huống</strong></button>
+      <button type="button" data-nav-screen="help"><span aria-hidden="true">?</span><strong>Trợ giúp</strong></button>
+    </nav>
+  </div>
+
+  <dialog id="inputDialog" class="app-dialog">
+    <form method="dialog" class="sheet-card">
+      <div class="sheet-heading"><div><p class="app-eyebrow">KIỂM TRA TÌNH HUỐNG</p><h2>Bác kể lại chuyện vừa xảy ra</h2></div><button value="cancel" class="sheet-close" aria-label="Đóng">×</button></div>
+      <label for="appStory">Nội dung tình huống</label>
+      <textarea id="appStory" rows="6" placeholder="Ví dụ: Có người gọi nói tài khoản của tôi sắp bị khóa..."></textarea>
+      <p class="input-warning">Không nhập OTP, mật khẩu, số tài khoản hoặc số CCCD.</p>
+      <details id="extraDetails">
+        <summary>Thêm ảnh, link hoặc số điện thoại</summary>
+        <label for="appScreenshot">Ảnh chụp màn hình</label>
+        <label class="app-file" for="appScreenshot"><input id="appScreenshot" type="file" accept="image/*"><span>▧</span><strong id="appFileLabel">Chọn ảnh trên điện thoại</strong></label>
+        <label for="appLink">Đường link đáng ngờ</label><input id="appLink" inputmode="url" placeholder="Ví dụ: http://...">
+        <label for="appPhone">Số điện thoại đã gọi</label><input id="appPhone" type="tel" inputmode="tel" placeholder="Ví dụ: 0901 234 567">
+      </details>
+      <p id="appInputError" class="app-error hidden" role="alert"></p>
+      <button id="appAnalyze" class="wide-primary" type="button">Kiểm tra ngay</button>
+    </form>
+  </dialog>
+
+  <dialog id="appSettingsDialog" class="app-dialog">
+    <form method="dialog" class="sheet-card">
+      <div class="sheet-heading"><div><p class="app-eyebrow">CÀI ĐẶT</p><h2>Điều chỉnh cho dễ dùng</h2></div><button value="cancel" class="sheet-close" aria-label="Đóng">×</button></div>
+      <label for="appContactName">Tên người thân tin cậy</label><input id="appContactName" placeholder="Ví dụ: Con gái Lan">
+      <label for="appContactPhone">Số điện thoại người thân</label><input id="appContactPhone" type="tel" inputmode="tel" placeholder="Ví dụ: 0901 234 567">
+      <label class="app-toggle"><input id="appLargeText" type="checkbox"><span><strong>Chữ lớn hơn</strong><small>Dễ đọc hơn trên điện thoại</small></span></label>
+      <label class="app-toggle"><input id="appHighContrast" type="checkbox"><span><strong>Tương phản cao</strong><small>Chữ và nút rõ hơn</small></span></label>
+      <label class="app-toggle"><input id="appSlowSpeech" type="checkbox" checked><span><strong>Đọc kết quả chậm</strong><small>Giọng đọc dễ theo dõi hơn</small></span></label>
+      <button id="saveAppSettings" class="wide-primary" type="button">Lưu cài đặt</button>
+    </form>
+  </dialog>
+
+  <dialog id="familyDialog" class="app-dialog">
+    <form method="dialog" class="sheet-card">
+      <div class="sheet-heading"><div><p class="app-eyebrow">HỎI NGƯỜI THÂN</p><h2>Gửi tóm tắt để nhờ kiểm tra</h2></div><button value="cancel" class="sheet-close" aria-label="Đóng">×</button></div>
+      <p id="familyRecipient" class="muted-text"></p>
+      <div class="family-message" id="familyMessage"></div>
+      <label class="consent-check"><input id="familyConsent" type="checkbox"><span>Tôi đồng ý gửi nội dung này cho người thân.</span></label>
+      <p id="familyError" class="app-error hidden" role="alert"></p>
+      <button id="familySend" class="wide-primary" type="button">Mở ứng dụng nhắn tin</button>
+      <button id="familyCopy" class="wide-secondary" type="button">Sao chép nội dung</button>
+    </form>
+  </dialog>
+
+  <dialog id="verifyDialog" class="app-dialog">
+    <form method="dialog" class="sheet-card">
+      <div class="sheet-heading"><div><p class="app-eyebrow">XÁC MINH AN TOÀN</p><h2>Không dùng thông tin người lạ vừa gửi</h2></div><button value="cancel" class="sheet-close" aria-label="Đóng">×</button></div>
+      <ol class="verify-steps"><li>Tự mở ứng dụng hoặc website chính thức.</li><li>Gọi số ở mặt sau thẻ hoặc số đã lưu từ trước.</li><li>Không đọc OTP, mật khẩu hoặc mã PIN.</li></ol>
+      <a class="wide-secondary link-button" href="https://ntrust.vn/" target="_blank" rel="noopener noreferrer">Mở nTrust để kiểm tra</a>
+    </form>
+  </dialog>
+
+  <dialog id="appInstallDialog" class="app-dialog">
+    <form method="dialog" class="sheet-card">
+      <div class="sheet-heading"><div><p class="app-eyebrow">CÀI LÊN ĐIỆN THOẠI</p><h2>Mở An Tâm nhanh hơn</h2></div><button value="cancel" class="sheet-close" aria-label="Đóng">×</button></div>
+      <div id="appInstallSteps" class="install-help"></div>
+      <button id="confirmAppInstall" class="wide-primary hidden" type="button">Cài ứng dụng</button>
+    </form>
+  </dialog>
+
+  <script src="mobile-app.js"></script>
+</body>
+</html>

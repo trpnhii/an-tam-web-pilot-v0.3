@@ -24,8 +24,9 @@
       <span><strong>An Tâm</strong><small>Kiểm tra trước khi hành động</small></span>
     </a>
     <div class="topbar-actions">
+      <a class="button button-secondary pitch-demo-link" href="app.html">Mở demo app</a>
       <button class="install-button hidden" id="installApp" type="button">＋ <span>Cài lên điện thoại</span></button>
-      <button class="icon-button" id="openSettings" type="button" aria-haspopup="dialog">⚙ <span>Cài đặt</span></button>
+      <button class="icon-button hidden" id="openSettings" type="button" aria-haspopup="dialog">⚙ <span>Cài đặt</span></button>
     </div>
   </header>
   <div class="offline-banner hidden" id="offlineBanner" role="status">Đang ngoại tuyến · Các chức năng đã lưu vẫn dùng được</div>
@@ -36,7 +37,7 @@
         <p class="eyebrow">TRỢ LÝ AN TOÀN SỐ CHO GIA ĐÌNH</p>
         <h1 id="heroTitle">Không chắc có phải lừa đảo?</h1>
         <p class="hero-lead">Bác hãy kể lại chuyện vừa xảy ra. An Tâm sẽ chỉ ra dấu hiệu đáng ngờ, đọc giải thích bằng tiếng Việt và đề xuất <strong>một việc an toàn nên làm tiếp theo</strong>.</p>
-        <a class="button button-primary hero-cta" href="#checker">Bắt đầu kiểm tra</a>
+        <a class="button button-primary hero-cta" href="app.html">Mở bản demo</a>
         <p class="privacy-line">🔒 Không gửi nội dung kiểm tra lên máy chủ trong bản prototype này.</p>
       </div>
       <div class="safety-card" aria-label="Quy trình an toàn gồm bốn bước">
@@ -50,7 +51,7 @@
       </div>
     </section>
 
-    <section class="checker section-wrap" id="checker" aria-labelledby="checkerTitle">
+    <section class="checker section-wrap hidden" id="checker" aria-labelledby="checkerTitle">
       <div class="section-heading">
         <div>
           <p class="eyebrow">BƯỚC 1 · KỂ LẠI TÌNH HUỐNG</p>

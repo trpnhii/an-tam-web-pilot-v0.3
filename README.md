@@ -2,6 +2,11 @@
 
 Prototype tĩnh cho **An Tâm** — trợ lý an toàn số voice-first giúp người lớn tuổi dừng lại, kiểm tra, xác minh và hỏi người tin cậy trước khi hành động trước một yêu cầu đáng ngờ.
 
+Website có hai trải nghiệm riêng:
+
+- `index.html`: landing page để pitching và trình bày ý tưởng;
+- `app.html`: giao diện app mobile-first, voice-first với chữ lớn và ít lựa chọn, dành cho người lớn tuổi.
+
 ## Chức năng
 
 - nhập tình huống bằng giọng nói hoặc văn bản;

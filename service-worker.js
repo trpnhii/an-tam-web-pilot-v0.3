@@ -1,11 +1,14 @@
 "use strict";
 
-const CACHE_NAME = "an-tam-v1.1";
+const CACHE_NAME = "an-tam-v1.2";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./app.html",
   "./styles.css",
+  "./app-ui.css",
   "./app.js",
+  "./mobile-app.js",
   "./manifest.webmanifest",
   "./icons/icon.svg",
   "./icons/icon-192.png",
@@ -39,7 +42,10 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
           return response;
         })
-        .catch(() => caches.match("./index.html"))
+        .catch(() => {
+          const fallback = requestUrl.pathname.endsWith("/app.html") ? "./app.html" : "./index.html";
+          return caches.match(fallback);
+        })
     );
     return;
   }
